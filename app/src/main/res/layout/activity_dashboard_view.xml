@@ -46,6 +46,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
+        android:onClick="Logout"
         android:id="@+id/logOutB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -77,7 +78,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/Nama"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -98,8 +99,9 @@
                 android:text="Universitas Bandar Lampung"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="@+id/textView2"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                app:layout_constraintStart_toStartOf="@+id/Nama"
+                app:layout_constraintTop_toBottomOf="@+id/Nama" />
+
 
 <!--            <com.google.android.material.button.MaterialButton-->
 <!--                android:id="@+id/todoB"-->
@@ -122,14 +124,14 @@
 <!--                app:layout_constraintBottom_toBottomOf="@+id/todoB"-->
 <!--                app:layout_constraintStart_toEndOf="@+id/todoB" />-->
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/profileB"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_marginEnd="16dp"
                 android:background="?attr/selectableItemBackground"
                 android:padding="8dp"
-                android:src="@drawable/profile"
+                android:src="@drawable/ic_profile"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -167,10 +169,11 @@
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:onClick="gotoMyabsent"
                     android:id="@+id/image_view1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/write"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_absent"
                     app:layout_constraintBottom_toTopOf="@+id/textView1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -214,10 +217,11 @@
                 android:layout_height="match_parent">
 
                 <ImageView
+                    android:onClick="gotoabsent"
                     android:id="@+id/image_view20"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/practice"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_add"
                     app:layout_constraintBottom_toTopOf="@+id/textView20"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -229,7 +233,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="PRACTICE"
+                    android:text="ABSEN"
                     android:textAllCaps="true"
                     android:textColor="@color/green_500"
                     android:textSize="14sp"

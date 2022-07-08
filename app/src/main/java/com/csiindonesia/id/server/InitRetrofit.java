@@ -21,4 +21,11 @@ public class InitRetrofit {
     public ApiServices getApi(){
         return retrofit.create(ApiServices.class);
     }
+    public static Retrofit getRetrofit() {
+
+        return new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+    }
 }

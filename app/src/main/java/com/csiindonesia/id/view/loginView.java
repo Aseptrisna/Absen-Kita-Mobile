@@ -118,12 +118,12 @@ public class loginView extends AppCompatActivity implements user{
         String Guid=datauser.get(0).getGuid();
         String Email=datauser.get(0).getEmail();
         String Password=datauser.get(0).getPassword();
-//        String Telp= String.valueOf(datauser.get(0).getTelp());
+        String Telp= String.valueOf(datauser.get(0).getTelp());
         String Nama=datauser.get(0).getName();
         sharedPrefManager.saveSPString(SharedPrefManager.SP_Guid, Guid);
         sharedPrefManager.saveSPString(SharedPrefManager.SP_Email, Email);
         sharedPrefManager.saveSPString(SharedPrefManager.SP_Password, Password);
-//        sharedPrefManager.saveSPString(SharedPrefManager.SP_Telp, Telp);
+        sharedPrefManager.saveSPString(SharedPrefManager.SP_Telp, Telp);
         sharedPrefManager.saveSPString(SharedPrefManager.SP_Nama, Nama);
         sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
         goto_dashboard();

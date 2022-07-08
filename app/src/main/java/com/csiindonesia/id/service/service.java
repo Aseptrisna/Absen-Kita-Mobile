@@ -8,7 +8,7 @@ import com.csiindonesia.id.response.responseLogin;
 import com.csiindonesia.id.server.ApiServices;
 import com.csiindonesia.id.server.InitRetrofit;
 import com.csiindonesia.id.utils.user;
-import com.csiindonesia.id.view.registerView;
+
 
 import java.util.List;
 import retrofit2.Call;
@@ -20,7 +20,6 @@ public class service {
     public service(user users) {
         this.users = users;
     }
-
     public void UserRegister(String name, String telp, String email,String password){
         Call<responseApi> call = InitRetrofit.getInstance().getApi().UserSignup(name,telp,email,password);
         call.enqueue(new Callback<responseApi>() {

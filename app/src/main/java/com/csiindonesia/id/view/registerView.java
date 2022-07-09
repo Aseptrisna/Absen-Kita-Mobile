@@ -168,7 +168,7 @@ public class registerView extends AppCompatActivity implements user {
     @Override
     public void Unit(List<modelUnits> data) {
         List<String> units = new ArrayList<>();
-        units.add(0, getString(R.string.txt_please_slct_instansi));
+        units.add(0, getString(R.string.txt_please_slct_unit));
         for (int i = 0; i < data.size(); i++)
             units.add(data.get(i).getName());
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(registerView.this,
@@ -178,7 +178,7 @@ public class registerView extends AppCompatActivity implements user {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 try{
-                    if (!RegisterUnit.getSelectedItem().toString().equals(getString(R.string.txt_please_slct_instansi))) {
+                    if (!RegisterUnit.getSelectedItem().toString().equals(getString(R.string.txt_please_slct_unit))) {
                         Unit = data.get(position - 1).getGuid();
 //                    services.GetUnits(Instansi);
                     }

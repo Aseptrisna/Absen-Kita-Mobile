@@ -6,19 +6,29 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.csiindonesia.id.R;
+import com.csiindonesia.id.model.modelAbsen;
+import com.csiindonesia.id.model.modelUnits;
 import com.csiindonesia.id.model.modelUser;
 import com.csiindonesia.id.service.service;
 import com.csiindonesia.id.utils.user;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -35,8 +45,15 @@ public class registerView extends AppCompatActivity implements user {
     EditText Password;
     @BindView(R.id.RegisterForm)
     LinearLayout RegisterForm;
+    @BindView(R.id.RegisterInstansi)
+    Spinner RegisterInstansi;
+    @BindView(R.id.RegisterUnit)
+    Spinner RegisterUnit;
     ProgressDialog Loading;
     service services;
+    String Instansi;
+    String Unit;
+    Animation uptodown, downtoup,Fadein,FadeOut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -45,6 +62,9 @@ public class registerView extends AppCompatActivity implements user {
         ButterKnife.bind(this);
         Loading=new ProgressDialog(this);
         services=new service(this);
+        Fadein = AnimationUtils.loadAnimation(this, R.anim.uptodown);
+        RegisterForm.setAnimation(Fadein);
+        services.GetIsntasni();
     }
     private void Validasi() {
         if (Email.getText().toString().equals("") || Password.getText().toString().equals("")||
@@ -60,16 +80,18 @@ public class registerView extends AppCompatActivity implements user {
             String password= Password.getText().toString();
             String nama=Nama.getText().toString();
             String telp= Telp.getText().toString();
-            RequestRegister(nama,telp,email,password);
+            String instansi=Instansi;
+            String unit=Unit;
+            RequestRegister(nama,telp,email,password,instansi,unit);
         }
 
     }
 
-    private void RequestRegister(String nama, String telp, String email, String password) {
+    private void RequestRegister(String nama, String telp, String email, String password,String instansi,String unit) {
         Loading.setMessage("..Loading...");
         Loading.setCancelable(true);
         Loading.show();
-        services.UserRegister(nama,telp,email,password);
+        services.UserRegister(nama,telp,email,password,instansi,unit);
     }
 
     public void Login(View view) {
@@ -122,6 +144,68 @@ public class registerView extends AppCompatActivity implements user {
 
     @Override
     public void Berhasil(List<modelUser> datauser) {
+        List<String> intansi = new ArrayList<>();
+        intansi.add(0, getString(R.string.txt_please_slct_instansi));
+        for (int i = 0; i < datauser.size(); i++)
+            intansi.add(datauser.get(i).getName());
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(registerView.this,
+                android.R.layout.simple_spinner_item, intansi);
+        RegisterInstansi.setAdapter(adapter);
+        RegisterInstansi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (!RegisterInstansi.getSelectedItem().toString().equals(getString(R.string.txt_please_slct_instansi))) {
+                    Instansi = datauser.get(position - 1).getGuid();
+                    services.GetUnits(Instansi);
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
 
+    @Override
+    public void Unit(List<modelUnits> data) {
+        List<String> units = new ArrayList<>();
+        units.add(0, getString(R.string.txt_please_slct_instansi));
+        for (int i = 0; i < data.size(); i++)
+            units.add(data.get(i).getName());
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(registerView.this,
+                android.R.layout.simple_spinner_item, units);
+        RegisterUnit.setAdapter(adapter);
+        RegisterUnit.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                try{
+                    if (!RegisterUnit.getSelectedItem().toString().equals(getString(R.string.txt_please_slct_instansi))) {
+                        Unit = data.get(position - 1).getGuid();
+//                    services.GetUnits(Instansi);
+                    }
+                }catch (Exception e){
+
+                }
+
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+    }
+
+    @Override
+    public void succes(String message) {
+
+    }
+
+    @Override
+    public void Succesgetdata(List<modelAbsen> data) {
+
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        goto_login();
     }
 }

@@ -7,12 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.csiindonesia.id.R;
 import com.csiindonesia.id.localstorage.SharedPrefManager;
+import com.csiindonesia.id.model.modelAbsen;
+import com.csiindonesia.id.model.modelUnits;
 import com.csiindonesia.id.model.modelUser;
 import com.csiindonesia.id.service.service;
 import com.csiindonesia.id.utils.user;
@@ -34,6 +38,7 @@ public class loginView extends AppCompatActivity implements user{
     SharedPrefManager sharedPrefManager;
     ProgressDialog Loading;
     service services;
+    Animation uptodown, downtoup,Fadein,FadeOut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -43,6 +48,8 @@ public class loginView extends AppCompatActivity implements user{
         Loading=new ProgressDialog(this);
         services=new service(this);
         sharedPrefManager=new SharedPrefManager(this);
+        Fadein = AnimationUtils.loadAnimation(this, R.anim.uptodown);
+        FormLogin.setAnimation(Fadein);
         ceksession();
     }
 
@@ -120,14 +127,34 @@ public class loginView extends AppCompatActivity implements user{
         String Password=datauser.get(0).getPassword();
         String Telp= String.valueOf(datauser.get(0).getTelp());
         String Nama=datauser.get(0).getName();
+        String Instansti=datauser.get(0).getInstansi();
+        String Unit=datauser.get(0).getUnit();
         sharedPrefManager.saveSPString(SharedPrefManager.SP_Guid, Guid);
         sharedPrefManager.saveSPString(SharedPrefManager.SP_Email, Email);
         sharedPrefManager.saveSPString(SharedPrefManager.SP_Password, Password);
         sharedPrefManager.saveSPString(SharedPrefManager.SP_Telp, Telp);
         sharedPrefManager.saveSPString(SharedPrefManager.SP_Nama, Nama);
+        sharedPrefManager.saveSPString(SharedPrefManager.SP_Instansi,Instansti);
+        sharedPrefManager.saveSPString(SharedPrefManager.SP_Units,Unit);
         sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
         goto_dashboard();
     }
+
+    @Override
+    public void Unit(List<modelUnits> data) {
+
+    }
+
+    @Override
+    public void succes(String message) {
+
+    }
+
+    @Override
+    public void Succesgetdata(List<modelAbsen> data) {
+
+    }
+
     public void showSnackbar(String message) {
         Snackbar snackbar = Snackbar.make(FormLogin,""+message , Snackbar.LENGTH_INDEFINITE)
                 .setAction("Ulangi", new View.OnClickListener() {

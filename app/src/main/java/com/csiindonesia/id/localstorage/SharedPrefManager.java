@@ -11,6 +11,8 @@ public class SharedPrefManager {
     public static final String SP_Telp= "spTelp";
     public static final String SP_Password = "spPassword";
     public static final String SP_Status= "spStatus";
+    public static final String SP_Instansi= "spInstansi";
+    public static final String SP_Units= "SPUnits";
     public static final String SP_SUDAH_LOGIN = "SudahLogin";
     SharedPreferences sp;
     SharedPreferences.Editor spEditor;
@@ -48,4 +50,14 @@ public class SharedPrefManager {
     public String getSP_Telp(){
         return sp.getString(SP_Telp, "");
     }
+    public String getSP_Instansi(){
+        return sp.getString(SP_Instansi, "");
+    }
+    public String getSP_Units(){
+        return sp.getString(SP_Units, "");
+    }
+    public String getSP_Guid(){
+        return sp.getString(SP_Guid, "");
+    }
+
 }

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".view.absentView">
     <LinearLayout
+        android:id="@+id/FormAbsen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -14,6 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:gravity="center"
+            android:textSize="20dp"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:text="Menu Absen"/>
@@ -28,6 +30,135 @@
             android:src="@drawable/ic_camera"
             android:layout_marginTop="10dp"
             android:background="@color/white"/>
+        <LinearLayout
+            android:id="@+id/ShowHide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:background="@drawable/rounded_edittext"
+                android:layout_height="wrap_content"
+                app:counterTextColor="@color/bg_form"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                app:passwordToggleEnabled="false">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginLeft="2dp"
+                    android:id="@+id/Latitude"
+                    android:textColorHint="@color/bg_form"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Latitude"
+                    android:inputType="text"
+                    android:textSize="15sp"
+                    tools:targetApi="lollipop" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:background="@drawable/rounded_edittext"
+                android:layout_height="wrap_content"
+                app:counterTextColor="@color/bg_form"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                app:passwordToggleEnabled="false">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginLeft="2dp"
+                    android:id="@+id/Longitude"
+                    android:textColorHint="@color/bg_form"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Longitude"
+                    android:inputType="text"
+                    android:textSize="15sp"
+                    tools:targetApi="lollipop" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:background="@drawable/rounded_edittext"
+                android:layout_height="wrap_content"
+                app:counterTextColor="@color/bg_form"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                app:passwordToggleEnabled="false">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginLeft="2dp"
+                    android:id="@+id/Alamat"
+                    android:textColorHint="@color/bg_form"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Alamat"
+                    android:inputType="text|textMultiLine"
+                    android:textSize="15sp"
+                    tools:targetApi="lollipop" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:background="@drawable/rounded_edittext"
+                android:layout_height="wrap_content"
+                app:counterTextColor="@color/bg_form"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                app:passwordToggleEnabled="false">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginLeft="2dp"
+                    android:id="@+id/Deskripsi"
+                    android:textColorHint="@color/bg_form"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Deskripsi Kegiatan"
+                    android:inputType="text|textMultiLine"
+                    android:textSize="15sp"
+                    tools:targetApi="lollipop" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
 
         <Button
             android:id="@+id/UploadBtn"
@@ -35,12 +166,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
+            android:layout_marginBottom="50dp"
             android:background="@drawable/button_background"
             android:onClick="sendAbsent"
-            android:text="Upload"
+            android:text="Send"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="@color/white"
             android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

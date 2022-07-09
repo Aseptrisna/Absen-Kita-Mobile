@@ -4,6 +4,7 @@ package com.csiindonesia.id.view;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.csiindonesia.id.R;
 import com.csiindonesia.id.localstorage.SharedPrefManager;
@@ -36,6 +39,7 @@ public class dashboardView extends AppCompatActivity {
         ButterKnife.bind(this);
         sharedPrefManager=new SharedPrefManager(this);
         nama.setText(sharedPrefManager.getSP_Nama());
+        checklocationPermission();
     }
 
     public void Logout(View view) {
@@ -74,6 +78,7 @@ public class dashboardView extends AppCompatActivity {
 
 
     public void gotoMyabsent(View view) {
+        goto_list();
     }
 
     public void gotoabsent(View view) {
@@ -85,5 +90,19 @@ public class dashboardView extends AppCompatActivity {
         Intent intent=new Intent(dashboardView.this,absentView.class);
         startActivity(intent);
         finish();
+    }
+    public void goto_list(){
+        Intent intent=new Intent(dashboardView.this,listabsenView.class);
+        startActivity(intent);
+        finish();
+    }
+    private void checklocationPermission() {
+        try {
+            if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

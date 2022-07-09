@@ -12,9 +12,11 @@ public class modelUser {
     private Number telp;
     private String address;
     private String role;
+    private String instansi;
+    private String unit;
     private Integer otp;
     private Boolean isActive;
-    private List<Object> unit = new ArrayList<Object>();
+    private List<Object> units = new ArrayList<Object>();
     private List<Object> aplication = new ArrayList<Object>();
     private String createAt;
     private Integer v;
@@ -78,11 +80,11 @@ public class modelUser {
     public void setIsActive(Boolean isActive) {
         this.isActive = isActive;
     }
-    public List<Object> getUnit() {
-        return unit;
+    public List<Object> getUnits() {
+        return units;
     }
     public void setUnit(List<Object> unit) {
-        this.unit = unit;
+        this.units = units;
     }
     public List<Object> getAplication() {
         return aplication;
@@ -101,5 +103,18 @@ public class modelUser {
     }
     public void setV(Integer v) {
         this.v = v;
+    }
+
+    public String getInstansi() {
+        return instansi;
+    }
+    public void setInstansi(String instansi) {
+        this.instansi = instansi;
+    }
+    public String getUnit() {
+        return unit;
+    }
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 }

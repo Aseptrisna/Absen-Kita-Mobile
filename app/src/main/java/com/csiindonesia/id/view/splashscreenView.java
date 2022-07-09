@@ -34,14 +34,14 @@ public class splashscreenView extends AppCompatActivity {
         downtoup = AnimationUtils.loadAnimation(this, R.anim.downtoup);
         Fadein = AnimationUtils.loadAnimation(this, R.anim.to_left);
         FadeOut= AnimationUtils.loadAnimation(this, R.anim.to_right);
-        icon.setAnimation(uptodown);
+        icon.setAnimation(Fadein);
 //        SplashScreen.setAnimation(Fadein);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 goto_login();
             }
-        }, 5000);
+        }, 3000);
     }
 
     private void goto_login() {

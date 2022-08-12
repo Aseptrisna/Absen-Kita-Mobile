@@ -194,8 +194,8 @@ public class service {
             }
         });
     }
-    public void Absent(String user, String instansi, String unit, String nama, String gambar, String lat, String longs, String alamat, String deskripsi) {
-        Call<responseApi> call = InitRetrofit.getInstance().getApi().UserAbsen(user,instansi,unit,nama,gambar,lat,longs,alamat,deskripsi);
+    public void Absent(String user, String instansi, String unit, String nama, String gambar, String lat, String longs, String alamat, String deskripsi,String jenis) {
+        Call<responseApi> call = InitRetrofit.getInstance().getApi().UserAbsen(user,instansi,unit,nama,gambar,lat,longs,alamat,deskripsi,jenis);
         call.enqueue(new Callback<responseApi>() {
             @Override
             public void onResponse(Call<responseApi> call, Response<responseApi> response) {

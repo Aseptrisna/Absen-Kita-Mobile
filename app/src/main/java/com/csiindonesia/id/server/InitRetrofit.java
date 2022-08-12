@@ -3,6 +3,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class InitRetrofit {
+//    public static final String BASE_URL ="https://absent-kita.pptik.id:5114/";
     public static final String BASE_URL ="http://192.168.0.8:5114/";
     private static InitRetrofit mInstance;
     private Retrofit retrofit;
@@ -22,7 +23,6 @@ public class InitRetrofit {
         return retrofit.create(ApiServices.class);
     }
     public static Retrofit getRetrofit() {
-
         return new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())

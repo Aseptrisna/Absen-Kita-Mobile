@@ -40,7 +40,7 @@ public class adapterAbsen extends RecyclerView.Adapter<adapterAbsen.MyViewHolder
         holder.nama.setText(menu.get(position).getNama());
         holder.date.setText(menu.get(position).getTanggal()+"-"+menu.get(position).getJam());
         holder.deskripsi.setText(menu.get(position).getDeskripsi());
-        final String urlGambar = InitRetrofit.BASE_URL+ menu.get(position).getGambar();
+        final String urlGambar = "https://absensi-selfie.pptik.id/data/kehadiran/image/"+ menu.get(position).getGambar();
         Picasso.with(context).load(urlGambar).into(holder.gambar);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -2,4 +2,10 @@
     <string name="app_name">Absen Kita</string>
     <string name="txt_please_slct_instansi">Silakan Pilih Instansi!</string>
     <string name="txt_please_slct_unit">Silakan Pilih Unit Instansi!</string>
+
+    <string-array name="JenisAbsen">
+        <item>Absen Pagi</item>
+        <item>Absen Siang</item>
+        <item>Absen Sore</item>
+    </string-array>
 </resources>

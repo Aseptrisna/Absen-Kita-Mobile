@@ -31,10 +31,14 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.csiindonesia.id.R;
 import com.csiindonesia.id.localstorage.SharedPrefManager;
@@ -53,6 +57,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -83,6 +89,8 @@ public class absentView extends AppCompatActivity implements file, user {
     Button Upload_Btn;
     @BindView(R.id.FormAbsen)
     LinearLayout FormAbsen;
+    @BindView(R.id.LienarPilih)
+    LinearLayout FormPilih;
     @BindView(R.id.Latitude)
     EditText Latitude;
     @BindView(R.id.Longitude)
@@ -93,8 +101,15 @@ public class absentView extends AppCompatActivity implements file, user {
     EditText Deskripsi;
     @BindView(R.id.ShowHide)
     LinearLayout Form;
+    @BindView(R.id.JenisAbsen)
+    Spinner JenisAbsen;
+    @BindView(R.id.date)
+    TextView Date;
+    @BindView(R.id.time)
+    TextView Time;
     uploadFile uploadFiles;
     String imagePath;
+    Calendar c = Calendar.getInstance();
     private static final int CAMERA_REQUEST = 1888;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
     FusedLocationProviderClient mFusedLocationClient;
@@ -103,6 +118,8 @@ public class absentView extends AppCompatActivity implements file, user {
     SharedPrefManager sharedPrefManager;
     ProgressDialog Loading;
     service services;
+    String jenis;
+    private String[] Item={"Absen-Pagi","Absen-Siang","Absen-Sore","Absen-Lembur"};
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,9 +136,50 @@ public class absentView extends AppCompatActivity implements file, user {
         checkSelfPermission();
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getLastLocation();
-        Form.setVisibility(View.GONE);
+        showtime();
+        Form.setVisibility(View.VISIBLE);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_dropdown_item,Item);
+        JenisAbsen.setAdapter(adapter);
+        JenisAbsen.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView adapterView, View view, int i, long l) {
+                jenis=adapter.getItem(i);
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView adapterView) {
 
+            }
+        });
+    }
+
+    private void showtime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String strDate = sdf.format(c.getTime());
+        Date.setText(strDate);
+        SimpleDateFormat sdfjam = new SimpleDateFormat("HH:mm:ss");
+        String strTime = sdfjam.format(c.getTime());
+        Time.setText(strTime);
+        SimpleDateFormat jam = new SimpleDateFormat("HH");
+        String strJam = jam.format(c.getTime());
+//        int Jam=Integer.parseInt(strJam);
+//        Log.d("Jam",strJam);
+//        if(Jam ==00){
+//            Item= new String[]{"Absen-Pagi"};
+//        }
+//        for (Jam = 0; Jam <= 11; Jam++) {
+//            Item= new String[]{"Absen-Pagi"};
+//        }
+//        for (Jam = 11; Jam <= 14; Jam++) {
+//            Item= new String[]{"Absen-Siang"};
+//        }
+//        for (Jam = 14; Jam <= 16; Jam++) {
+//            Item= new String[]{"Absen-Sore"};
+//        }
+//        for (Jam = 16; Jam <= 23; Jam++) {
+//            Item= new String[]{"Absen-Lembur"};
+//        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -157,7 +215,9 @@ public class absentView extends AppCompatActivity implements file, user {
         try {
             if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
                 Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+                IDProf.setVisibility(View.VISIBLE);
                 IDProf.setImageBitmap(thumbnail);
+//                FormPilih.setVisibility(View.GONE);
                 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                 thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
                 Random rand = new Random();
@@ -196,14 +256,20 @@ public class absentView extends AppCompatActivity implements file, user {
         if(deskripsi.equals("")){
             showSnackbar("Masukan Deskripsi");
         }else{
-            Loading.setMessage("..Loading...");
-            Loading.setCancelable(true);
-            Loading.show();
-            File photo = new File(imagePath);
-            RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), photo);
-            MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", photo.getName(), requestBody);
-            RequestBody filename = RequestBody.create(MediaType.parse("text/plain"), photo.getName());
-            uploadFiles.UploadFile(fileToUpload, filename);
+            try{
+                Loading.setMessage("..Loading...");
+                Loading.setCancelable(true);
+                Loading.show();
+                File photo = new File(imagePath);
+                RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), photo);
+                MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("file", photo.getName(), requestBody);
+                RequestBody filename = RequestBody.create(MediaType.parse("text/plain"), photo.getName());
+                uploadFiles.UploadFile(fileToUpload, filename);
+            }catch (Exception e){
+                Loading.dismiss();
+                showSnackbar("Silahkan Pilih Gambar !!");
+            }
+
         }
     }
 
@@ -222,7 +288,7 @@ public class absentView extends AppCompatActivity implements file, user {
         String longs=Longitude.getText().toString();
         String alamat=Alamat.getText().toString();
         String deskripsi=Deskripsi.getText().toString();
-        services.Absent(user,instansi,unit,nama,gambar,lat,longs,alamat,deskripsi);
+        services.Absent(user,instansi,unit,nama,gambar,lat,longs,alamat,deskripsi,jenis);
     }
 
     @Override

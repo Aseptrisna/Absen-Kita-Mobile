@@ -37,7 +37,7 @@ public interface ApiServices {
             @Field("password") String password
     );
     @Multipart
-    @POST("files/upload")
+    @POST("img/upload")
     Call<responseFile> uploadFile(@Part MultipartBody.Part file,
                                   @Part("file") RequestBody name);
     @FormUrlEncoded
@@ -64,7 +64,8 @@ public interface ApiServices {
             @Field("latitude") String latitude,
             @Field("longitude") String longitude,
             @Field("alamat") String alamat,
-            @Field("deskripsi") String deskripsi
+            @Field("deskripsi") String deskripsi,
+            @Field("jenis") String jenis
     );
     @FormUrlEncoded
     @POST("absent/getbyuser")

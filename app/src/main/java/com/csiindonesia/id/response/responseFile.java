@@ -4,18 +4,18 @@ import java.io.Serializable;
 import java.lang.String;
 
 public class responseFile implements Serializable {
-  private String filename;
+  private String imagename;
 
   private String message;
 
   private Boolean status;
 
-  public String getFilename() {
-    return this.filename;
+  public String getImagename() {
+    return this.imagename;
   }
 
-  public void setFilename(String filename) {
-    this.filename = filename;
+  public void setImagename(String imagename) {
+    this.imagename = imagename;
   }
 
   public String getMessage() {

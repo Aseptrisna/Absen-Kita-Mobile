@@ -5,6 +5,7 @@ import com.csiindonesia.id.response.responseApi;
 import com.csiindonesia.id.response.responseFile;
 import com.csiindonesia.id.server.InitRetrofit;
 import com.csiindonesia.id.utils.file;
+import com.csiindonesia.id.server.Retrofit;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -18,14 +19,14 @@ public class uploadFile {
         this.files = files;
     }
     public void UploadFile(MultipartBody.Part fileToUpload, RequestBody filename){
-        Call<responseFile> call = InitRetrofit.getInstance().getApi().uploadFile(fileToUpload,filename);
+        Call<responseFile> call = Retrofit.getInstance().getApi().uploadFile(fileToUpload,filename);
         call.enqueue(new Callback<responseFile>() {
             @Override
             public void onResponse(Call<responseFile> call, Response<responseFile> response) {
                 if (response.isSuccessful()){
                     boolean status = response.body().getStatus();
                     String message=response.body().getMessage();
-                    String file=response.body().getFilename();
+                    String file=response.body().getImagename();
                     if (status){
                         Log.d("response api", message.toString());
                         files.Berhasil(message,file);

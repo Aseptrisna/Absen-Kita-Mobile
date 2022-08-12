@@ -4,6 +4,7 @@ package com.csiindonesia.id.view;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -121,6 +122,7 @@ public class loginView extends AppCompatActivity implements user{
 
     @Override
     public void Berhasil(List<modelUser> datauser) {
+        Log.d("User", String.valueOf(datauser));
         Loading.dismiss();
         String Guid=datauser.get(0).getGuid();
         String Email=datauser.get(0).getEmail();
@@ -129,6 +131,8 @@ public class loginView extends AppCompatActivity implements user{
         String Nama=datauser.get(0).getName();
         String Instansti=datauser.get(0).getInstansi();
         String Unit=datauser.get(0).getUnit();
+        Log.d("User", Unit);
+        Log.d("User", Instansti);
         sharedPrefManager.saveSPString(SharedPrefManager.SP_Guid, Guid);
         sharedPrefManager.saveSPString(SharedPrefManager.SP_Email, Email);
         sharedPrefManager.saveSPString(SharedPrefManager.SP_Password, Password);

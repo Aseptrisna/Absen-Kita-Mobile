@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/23221111/Project Flutter/AbsenQu/app/src/main/res/drawable-v24/linear.xml" value="0.1325" />
+        <entry key="..\:/23221111/Project Flutter/AbsenQu/app/src/main/res/drawable-v24/linear_absen.xml" value="0.1" />
+        <entry key="..\:/23221111/Project Flutter/AbsenQu/app/src/main/res/drawable-v24/linear_absen1.xml" value="0.1" />
         <entry key="..\:/23221111/Project Flutter/AbsenQu/app/src/main/res/drawable/button_background.xml" value="0.1305" />
         <entry key="..\:/23221111/Project Flutter/AbsenQu/app/src/main/res/drawable/custom_rectangle.xml" value="0.1" />
         <entry key="..\:/23221111/Project Flutter/AbsenQu/app/src/main/res/drawable/ic_absent.xml" value="0.143" />
@@ -13,6 +15,7 @@
         <entry key="..\:/23221111/Project Flutter/AbsenQu/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.1305" />
         <entry key="..\:/23221111/Project Flutter/AbsenQu/app/src/main/res/drawable/ic_baseline_lock_open_24.xml" value="0.1305" />
         <entry key="..\:/23221111/Project Flutter/AbsenQu/app/src/main/res/drawable/ic_baseline_perm_identity_24.xml" value="0.1" />
+        <entry key="..\:/23221111/Project Flutter/AbsenQu/app/src/main/res/drawable/ic_baseline_update_24.xml" value="0.1" />
         <entry key="..\:/23221111/Project Flutter/AbsenQu/app/src/main/res/drawable/ic_camera.xml" value="0.1325" />
         <entry key="..\:/23221111/Project Flutter/AbsenQu/app/src/main/res/drawable/ic_isntansi.xml" value="0.143" />
         <entry key="..\:/23221111/Project Flutter/AbsenQu/app/src/main/res/drawable/ic_logout.xml" value="0.143" />
@@ -22,7 +25,7 @@
         <entry key="..\:/23221111/Project Flutter/AbsenQu/app/src/main/res/drawable/rounded_edittext.xml" value="0.1305" />
         <entry key="..\:/23221111/Project Flutter/AbsenQu/app/src/main/res/layout/activity_absen_view.xml" value="0.1" />
         <entry key="..\:/23221111/Project Flutter/AbsenQu/app/src/main/res/layout/activity_absent_view.xml" value="0.16666666666666666" />
-        <entry key="..\:/23221111/Project Flutter/AbsenQu/app/src/main/res/layout/activity_dashboard_view.xml" value="0.17552083333333332" />
+        <entry key="..\:/23221111/Project Flutter/AbsenQu/app/src/main/res/layout/activity_dashboard_view.xml" value="0.10666666666666667" />
         <entry key="..\:/23221111/Project Flutter/AbsenQu/app/src/main/res/layout/activity_listabsen_view.xml" value="0.121875" />
         <entry key="..\:/23221111/Project Flutter/AbsenQu/app/src/main/res/layout/activity_login_view.xml" value="0.13333333333333333" />
         <entry key="..\:/23221111/Project Flutter/AbsenQu/app/src/main/res/layout/activity_profile_view.xml" value="0.140625" />

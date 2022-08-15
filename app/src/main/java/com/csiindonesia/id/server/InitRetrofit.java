@@ -3,8 +3,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class InitRetrofit {
-//    public static final String BASE_URL ="https://absent-kita.pptik.id:5114/";
-    public static final String BASE_URL ="http://192.168.0.8:5114/";
+    public static final String BASE_URL ="https://absent-kita.pptik.id:5114/";
+//    public static final String BASE_URL ="http://192.168.0.8:5114/";
     private static InitRetrofit mInstance;
     private Retrofit retrofit;
     private InitRetrofit(){
